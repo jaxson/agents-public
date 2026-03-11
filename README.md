@@ -1,50 +1,97 @@
-# ALT Text Generator — Claude Code Skill
+# ALT Text Generator
 
-A [Claude Code](https://docs.anthropic.com/en/docs/claude-code) skill that generates accessible ALT text for images, optimized for social media sharing.
+An AI prompt/skill that generates accessible ALT text for images, optimized for social media sharing. Works with **any AI system** that can process images.
 
 ## Why This Exists
 
-Millions of images are shared on social media every day without ALT text, making them invisible to people who use screen readers. Writing good ALT text takes effort — this skill aims to lower that barrier by generating high-quality, platform-aware descriptions that follow accessibility best practices.
+Millions of images are shared on social media every day without ALT text, making them invisible to people who use screen readers. Writing good ALT text takes effort — this project aims to lower that barrier by providing a well-crafted prompt that generates high-quality, platform-aware descriptions following accessibility best practices.
 
 **We want your feedback.** This is an early version and we're actively looking for input from accessibility experts, screen reader users, and anyone who depends on ALT text. See [How to Give Feedback](#how-to-give-feedback) below.
 
-## How It Works
+## What It Does
 
-This is a **Claude Code skill** — a reusable prompt template that runs inside [Claude Code](https://docs.anthropic.com/en/docs/claude-code) (Anthropic's CLI tool for Claude). When activated, Claude analyzes the image and generates ALT text following a set of rules covering:
+When given an image, this prompt instructs an AI to:
 
-- Platform-specific character limits (125 default, 1000 for LinkedIn/Twitter/Instagram/Facebook)
-- Describing people, actions, visible text, logos, colors, and spatial layout
-- Avoiding editorializing, jargon, and decorative filler
-- Special handling for screenshots, charts, and text-heavy images
+- Generate ALT text within **platform-specific character limits** (125 default, 1000 for LinkedIn/Twitter/Instagram/Facebook)
+- Describe people, actions, visible text, logos, colors, and spatial layout
+- Avoid editorializing, jargon, and decorative filler
+- Handle screenshots, charts, infographics, and text-heavy images appropriately
+- Produce **two options** (short and detailed) so the user can pick the best fit
 
-It generates **two options** (short and detailed) so the user can pick the best fit.
+## Choose Your Version
+
+This repo includes three versions of the same prompt, adapted for different tools:
+
+| Version | File | Best for |
+|---------|------|----------|
+| **Universal** | [`universal/system-prompt.txt`](universal/system-prompt.txt) | Any AI tool — ChatGPT, Gemini, Copilot, open-source models, custom apps |
+| **Claude Desktop** | [`claude-desktop/instructions.md`](claude-desktop/instructions.md) | Claude Desktop app (via Project instructions) |
+| **Claude Code** | [`claude-code/SKILL.md`](claude-code/SKILL.md) | Claude Code CLI (as a `/alt` slash command) |
+
+All three versions contain the same core rules — they only differ in format and activation method.
+
+---
 
 ## Installation
 
-1. Install [Claude Code](https://docs.anthropic.com/en/docs/claude-code) if you haven't already
-2. Create the skill directory:
+### Universal (any AI system)
+
+Copy the contents of [`universal/system-prompt.txt`](universal/system-prompt.txt) and paste it into:
+
+- **ChatGPT:** Custom Instructions or a GPT's system prompt
+- **Gemini:** Gem instructions
+- **Open-source models:** System prompt field in your UI (Open WebUI, text-generation-webui, etc.)
+- **API calls:** The `system` parameter in your API request
+- **Any other tool:** Wherever you can set a system prompt or custom instructions
+
+Then upload an image and say which platform it's for.
+
+### Claude Desktop
+
+1. Open Claude Desktop
+2. Go to a **Project** (or create one)
+3. Paste the contents of [`claude-desktop/instructions.md`](claude-desktop/instructions.md) into the project's custom instructions
+4. Upload an image to the conversation and specify the platform
+
+### Claude Code
+
+1. Create the skill directory:
    ```bash
    mkdir -p ~/.claude/skills/alt
    ```
-3. Copy the skill file:
+2. Copy the skill file:
    ```bash
-   cp SKILL.md ~/.claude/skills/alt/SKILL.md
+   cp claude-code/SKILL.md ~/.claude/skills/alt/SKILL.md
    ```
+3. Use it:
+   ```
+   /alt path/to/image.png linkedin
+   /alt photo.jpg twitter "Panel on AI governance at Munk School"
+   /alt screenshot.png
+   ```
+
+---
 
 ## Usage
 
-Inside Claude Code:
+Regardless of which version you use, the interaction is the same:
 
-```
-/alt path/to/image.png linkedin
-/alt photo.jpg twitter "Panel on AI governance at Munk School"
-/alt screenshot.png               # will ask for platform
-```
+1. **Share an image** with the AI
+2. **Specify a platform** (or let it ask): `twitter`, `linkedin`, `instagram`, `facebook`, or `default`
+3. **Optionally provide context**: names of people, event name, organization — anything that makes the description more accurate
+4. **Get two options**: a short version and a detailed version
 
-**Arguments:**
-- `image_path` (required) — path to the image file
-- `platform` (optional) — `twitter`/`x`, `linkedin`, `instagram`, `facebook`, or `default` (125 chars)
-- `"context"` (optional) — quoted string with names, event details, or other context to make the description more accurate
+### Platform Character Limits
+
+| Platform | Max chars | Style |
+|----------|-----------|-------|
+| Twitter/X | 1000 | Concise but descriptive |
+| LinkedIn | 1000 | Detailed, professional tone |
+| Instagram | 1000 | Vivid, descriptive |
+| Facebook | 1000 | Conversational, descriptive |
+| Default | 125 | Ultra-concise (screen reader safe) |
+
+---
 
 ## Test Cases & Examples
 
@@ -177,8 +224,21 @@ Below are example outputs across different image types. These are meant for revi
 We'd love to hear from you, especially if you use a screen reader or work in accessibility:
 
 - **Open an issue** on this repo with your feedback on any test case or design decision
-- **Suggest edits** to `SKILL.md` via pull request
+- **Suggest edits** via pull request to any of the prompt files
 - **Share your own test cases** — images where ALT text is commonly done poorly
+
+## Project Structure
+
+```
+alt-text-generator/
+├── README.md                          # This file
+├── universal/
+│   └── system-prompt.txt              # Works with any AI system
+├── claude-desktop/
+│   └── instructions.md                # Claude Desktop project instructions
+└── claude-code/
+    └── SKILL.md                       # Claude Code /alt slash command
+```
 
 ## License
 
