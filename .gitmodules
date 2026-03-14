@@ -1,0 +1,3 @@
+[submodule "OpenParlBrief"]
+	path = OpenParlBrief
+	url = https://github.com/jaxson/OpenParlBrief.git
