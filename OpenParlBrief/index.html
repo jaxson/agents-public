@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OpenParlBrief — Canadian Parliamentary Committee Monitor</title>
+  <meta name="description" content="Track Canadian House of Commons committee meetings, witness testimony, and parliamentary evidence — powered by open data.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <nav class="site-nav">
+    <div class="container">
+      <a href="/" class="nav-logo">OpenParl<span>Brief</span></a>
+      <button class="nav-toggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="#meetings">Meetings</a></li>
+        <li><a href="https://github.com/jaxson/OpenParlBrief" target="_blank">GitHub</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="container">
+      <div class="badge-beta">MVP</div>
+      <h1>Canadian Parliamentary Committee Monitor</h1>
+      <p>Track committee meetings, witness testimony, and parliamentary evidence from the House of Commons — powered by open data from openparliament.ca.</p>
+    </div>
+  </section>
+
+  <section class="filter-bar" id="meetings">
+    <div class="container">
+      <label for="committee-filter">Committee</label>
+      <select id="committee-filter">
+        <option value="">All Committees</option>
+      </select>
+      <span class="meeting-count" id="meeting-count"></span>
+    </div>
+  </section>
+
+  <section class="meetings-section">
+    <div class="container">
+      <div id="meetings-list"></div>
+      <div class="load-more-wrap" id="load-more-wrap" style="display:none;">
+        <button class="btn btn-outline" id="load-more">Load More Meetings</button>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      Data from <a href="https://openparliament.ca" target="_blank">openparliament.ca</a><br>
+      Built with open data from the Parliament of Canada
+    </div>
+  </footer>
+
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

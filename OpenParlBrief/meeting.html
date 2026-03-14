@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meeting — OpenParlBrief</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <nav class="site-nav">
+    <div class="container">
+      <a href="/" class="nav-logo">OpenParl<span>Brief</span></a>
+      <button class="nav-toggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="/">Meetings</a></li>
+        <li><a href="https://github.com/jaxson/OpenParlBrief" target="_blank">GitHub</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container">
+    <a href="/" class="back-link">&larr; Back to Meetings</a>
+
+    <div id="meeting-header">
+      <div class="loading">
+        <div class="spinner"></div>
+        <div class="loading-text">Loading meeting details...</div>
+      </div>
+    </div>
+
+    <div id="speeches-section" style="display:none; padding-bottom:4rem;">
+      <h2 class="speeches-section" style="font-size:1.1rem;font-weight:700;color:#374151;margin-bottom:1rem;">Evidence & Speeches</h2>
+      <div id="speeches-list"></div>
+      <div class="load-more-wrap" id="speeches-load-more-wrap" style="display:none;">
+        <button class="btn btn-outline" id="speeches-load-more">Load More Speeches</button>
+      </div>
+    </div>
+
+    <div id="no-evidence" class="empty-state" style="display:none;">
+      Evidence for this meeting has not yet been published.
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      Data from <a href="https://openparliament.ca" target="_blank">openparliament.ca</a><br>
+      Built with open data from the Parliament of Canada
+    </div>
+  </footer>
+
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

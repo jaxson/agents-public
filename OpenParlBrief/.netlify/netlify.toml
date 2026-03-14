@@ -1,0 +1,79 @@
+functionsDirectory = "/Users/jaxsonkhan/agents-public/OpenParlBrief/netlify/functions"
+functionsDirectoryOrigin = "config"
+redirectsOrigin = "config"
+plugins = []
+headers = []
+
+[build]
+publish = "/Users/jaxsonkhan/agents-public/OpenParlBrief"
+publishOrigin = "config"
+base = "/Users/jaxsonkhan/agents-public/OpenParlBrief"
+functions = "/Users/jaxsonkhan/agents-public/OpenParlBrief/netlify/functions"
+
+[build.environment]
+NODE_VERSION = "18"
+
+[build.processing]
+
+[build.processing.css]
+
+[build.processing.html]
+
+[build.processing.images]
+
+[build.processing.js]
+
+[build.services]
+
+[functions]
+
+[functions."*"]
+node_bundler = "esbuild"
+
+[[redirects]]
+from = "/api/committees"
+to = "/.netlify/functions/committees"
+status = 200.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/api/meetings"
+to = "/.netlify/functions/meetings"
+status = 200.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/api/meeting-detail"
+to = "/.netlify/functions/meeting-detail"
+status = 200.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/api/speeches"
+to = "/.netlify/functions/speeches"
+status = 200.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]

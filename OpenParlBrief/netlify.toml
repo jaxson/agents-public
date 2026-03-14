@@ -1,0 +1,29 @@
+[build]
+  publish = "."
+
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+
+[context.production.environment]
+  NODE_VERSION = "18"
+
+[[redirects]]
+  from = "/api/committees"
+  to = "/.netlify/functions/committees"
+  status = 200
+
+[[redirects]]
+  from = "/api/meetings"
+  to = "/.netlify/functions/meetings"
+  status = 200
+
+[[redirects]]
+  from = "/api/meeting-detail"
+  to = "/.netlify/functions/meeting-detail"
+  status = 200
+
+[[redirects]]
+  from = "/api/speeches"
+  to = "/.netlify/functions/speeches"
+  status = 200
